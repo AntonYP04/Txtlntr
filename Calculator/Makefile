@@ -1,24 +1,20 @@
-# Усложненный make-file.  Введены переменные для параметров компиляции и исполняемых файлов
+sources = main.cpp
 
-.PHONY: all debug release clean
+target = pract
 
-RELEASE_FLAGS = -O2 -Wall -DNDEBUG
-DEBUG_FLAGS   = -g -O0 -Wall
-RELEASE_EXEC  = Calc
-DEBUG_EXEC    = Calc-dbg
-SOURCE        = Calc.cpp
+cmp=g++
 
-all: debug release
+cmppar=02
 
-debug: $(DEBUG_EXEC)
+all: compile
+	$(cmp) $(sources) -o $(target)
 
-$(DEBUG_EXEC): $(SOURCE)
-	g++ $(DEBUG_FLAGS) $(SOURCE) -o $(DEBUG_EXEC) 
+compile:
 
-release: $(RELEASE_EXEC)
-
-$(RELEASE_EXEC): $(SOURCE)
-	g++ $(RELEASE_FLAGS) $(SOURCE) -o $(RELEASE_EXEC)
+	g++ -O2 main.cpp -o -DNDEBUG -Wall
 
 clean:
-	rm -f $(RELEASE_EXEC) $(DEBUG_EXEC)
+	rm -rf *.0
+run:
+	main -h
+	main -s 3 4
